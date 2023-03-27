@@ -47,3 +47,12 @@ for (let i = 0; i < T; i++) {
     }
 }
 console.log(answer)
+
+for (const sentence of sentences) {
+    let groupOfFlippedWords = [];
+    const words = sentence.split(' ');
+    for (const word of words) {
+        groupOfFlippedWords.push([...word].reverse().join(''));
+    }
+    console.log(groupOfFlippedWords.join(' '));
+}
