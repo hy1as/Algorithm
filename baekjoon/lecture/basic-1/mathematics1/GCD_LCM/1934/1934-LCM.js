@@ -35,3 +35,33 @@ for (let i = 0; i < T; i++) {
 }
 
 console.log(answer.join('\n'));
+
+function isPrime(number) {
+    if (number < 2) return false;
+    for (let i = 2; i ** 2 <= number; i++) {
+        if (number % i === 0) return false;
+    }
+    return true;
+}
+
+
+function getGroupOfPrimeLeastThanNumber(number) {
+    const sieve = Array.from({
+        length: number + 1,
+    }, () => true)
+    sieve[0] = false;
+    sieve[1] = false;
+    for (let i = 2; i * i <= number; i++) {
+        if (!sieve) continue;
+        for (let j = i * 2; j <= number; j += i) {
+            sieve[j] = false
+        }
+    }
+    const groupOfPrime = [];
+    sieve.forEach((val, index) => {
+        if(val) groupOfPrime.push(index);
+    })
+    return groupOfPrime
+}
+
+console.log(getGroupOfPrimeLeastThanNumber(100))
